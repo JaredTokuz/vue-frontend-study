@@ -6,13 +6,15 @@
     </ListboxLabel>
     <div class="mt-1 relative">
       <ListboxButton
-        class="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        class="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
       >
-        <span class="block truncate">{{ value?.name }}</span>
-        <span
-          class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
-        >
-          <SelectorIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+        <span class="block truncate">{{ value?.name }} </span>
+
+        <span class="absolute inset-y-0 right-0 flex pr-2 pointer-events-none">
+          <ChevronDoubleDownIcon
+            class="h-8 w-5 text-gray-400"
+            aria-hidden="true"
+          />
         </span>
       </ListboxButton>
 
@@ -70,7 +72,7 @@ import {
   ListboxOptions,
   ListboxOption,
 } from "@headlessui/vue";
-import { CheckIcon } from "@heroicons/vue/solid";
+import { CheckIcon, ChevronDoubleDownIcon } from "@heroicons/vue/solid";
 import { computed } from "vue";
 
 const props = defineProps<{

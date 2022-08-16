@@ -37,14 +37,33 @@ export const ChartOptionsDefaultLineSeries = () => {
   });
 };
 
+export const ChartOptionsDefaultPieSeries = () => {
+  return ChartOptionsApplyDefaults({
+    chart: {
+      type: "pie",
+    },
+    series: [],
+    labels: [],
+    dataLabels: {
+      enabled: true,
+      formatter: (val: number) => {
+        return val.toFixed(2) + "%";
+      },
+      dropShadow: {
+        enabled: true,
+      },
+    },
+  });
+};
+
 /**
  * generic list box with a data transform function
  */
-export type ListBoxCalculator<T> = {
+export type ListBoxCalculator<T, R> = {
   id: number;
   /** name used in the menu */
   name: string;
   /** used in the apex chart tooltip */
   description: string;
-  calculate(x: T[]): number[];
+  calculate(x: T[]): R;
 };

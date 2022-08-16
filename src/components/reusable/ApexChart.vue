@@ -1,11 +1,6 @@
 <template>
   <div class="pb-6">
-    <apexchart
-      width="700"
-      height="500"
-      :options="options"
-      :series="options.series"
-    ></apexchart>
+    <apexchart :options="options" :series="options.series"></apexchart>
   </div>
 </template>
 

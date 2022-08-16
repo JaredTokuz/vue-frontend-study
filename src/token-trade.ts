@@ -6,19 +6,19 @@ import {
 } from "./utils/ApexCharts";
 import mergeDeep from "./utils/mergeDeep";
 
+export type ListBoxCalTokenTrades = ListBoxCalculator<TokenTrades, number[]>;
+
 /**
  * Factory function for controlling data computation steps
  * @param data
  * @returns
  */
-export const ChartOptionsTokenTrades = (data: TokenTrades[]) => {
+export const ChartOptionsLineTokenTrades = (data: TokenTrades[]) => {
   const categories = data.map((x) => x.nonce);
-  const chartOptions = ChartOptionsDefaultLineSeries();
+  const defaultChartOptions = ChartOptionsDefaultLineSeries();
 
   return {
-    calculateChartOptions: (
-      listBoxCalculate: ListBoxCalculator<TokenTrades>
-    ) => {
+    calculateChartOptions: (listBoxCalculate: ListBoxCalTokenTrades) => {
       const calculatedChartOptions: ApexOptions = {
         series: [
           {
@@ -30,7 +30,10 @@ export const ChartOptionsTokenTrades = (data: TokenTrades[]) => {
           categories: categories,
         },
       };
-      return mergeDeep<ApexOptions>(chartOptions, calculatedChartOptions);
+      return mergeDeep<ApexOptions>(
+        defaultChartOptions,
+        calculatedChartOptions
+      );
     },
   };
 };
@@ -38,7 +41,7 @@ export const ChartOptionsTokenTrades = (data: TokenTrades[]) => {
 /**
  * list box selection for token trade structs
  */
-export const tokenTradeEquations: ListBoxCalculator<TokenTrades>[] = [
+export const tokenTradeEquations: ListBoxCalTokenTrades[] = [
   {
     id: 1,
     name: "priceChart",
