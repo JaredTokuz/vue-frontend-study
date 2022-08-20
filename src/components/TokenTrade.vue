@@ -12,19 +12,19 @@
           <ListBoxWrapper
             v-model="selectedEquation"
             :list-names="tokenTradeEquations"
-          ></ListBoxWrapper>
+          />
         </div>
         <!-- View -->
         <div
           class="col-span-2 flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r"
         >
-          <ApexChart :options="chartOptions"></ApexChart>
+          <ApexChart :options="chartOptions" />
         </div>
         <!-- smart contract buy or sell TODO -->
         <div
-          class="col-span-1 auto-cols-min flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l"
+          class="col-span-1 flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l"
         >
-          <TokenTradeForm></TokenTradeForm>
+          <ContainerMap />
         </div>
       </div>
     </template>
@@ -39,11 +39,16 @@ import {
 } from "@/token-trade";
 import { computed, ref } from "vue";
 import ApexChart from "./reusable/ApexChart.vue";
-import ListBoxWrapper from "./reusable/headless/ListBoxWrapper.vue";
+import ListBoxWrapper from "./reusable/ListBoxWrapper.vue";
 import TitleGrid from "./reusable/TitleGrid.vue";
 import TokenTradeForm from "./TokenTradeForm.vue";
+import ContainerMap from "./TokenTrade/ContainerMap.vue";
+import { queryTokenTrades } from "@/urql/client";
 
-const dataTokenTrades = ref(tokenTrades);
+const resultTokenTrades = await queryTokenTrades();
+if (!resultTokenTrades.data) throw "";
+
+const dataTokenTrades = ref(resultTokenTrades.data);
 /** initialize the data , axis created once here*/
 const dataStaging = computed(() => {
   return ChartOptionsLineTokenTrades(dataTokenTrades.value);

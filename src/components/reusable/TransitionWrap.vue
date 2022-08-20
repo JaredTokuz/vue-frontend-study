@@ -1,0 +1,22 @@
+<template>
+  <TransitionRoot
+    appear
+    :show="isShowing"
+    as="template"
+    enter="transform transition delay-300 duration-[400ms]"
+    enter-from="opacity-0 rotate-[-120deg] scale-50"
+    enter-to="opacity-100 rotate-0 scale-100"
+    leave="transform duration-200 transition ease-in-out"
+    leave-from="opacity-100 rotate-0 scale-100 "
+    leave-to="opacity-0 scale-95 "
+  >
+    <slot name="content"></slot>
+  </TransitionRoot>
+</template>
+
+<script setup lang="ts">
+import { TransitionRoot } from "@headlessui/vue";
+const props = defineProps<{
+  isShowing: boolean;
+}>();
+</script>

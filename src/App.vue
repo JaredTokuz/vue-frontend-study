@@ -1,7 +1,7 @@
 <template>
-  <HeroPage></HeroPage>
-  <TokenTrade></TokenTrade>
-  <UserProfile></UserProfile>
+  <HeroPage />
+  <TokenTrade />
+  <UserProfile />
 </template>
 
 <script setup lang="ts">

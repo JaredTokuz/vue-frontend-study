@@ -2,8 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-.gridBro {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  grid-gap: 2rem;
+/* you can overwrite the height by adding it afterwards */
+.container-map {
+  @apply grid grid-cols-1 h-36;
+}
+
+.container-map .map-element {
+  @apply row-span-full col-start-1 col-span-1;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <!-- Price Feed Here -->
     <div class="grid grid-cols-2 md:grid-cols-1">
       <div class="col-span-1 my-auto pb-2">
@@ -17,7 +17,7 @@
               class="flex-shrink-0 mx-auto h-5 w-5 text-xl"
               aria-hidden="true"
             >
-              {{ 93 }}
+              {{ resultLatestState.data }}
             </div>
           </div>
         </div>
@@ -26,7 +26,7 @@
         <div
           class="grid grid-cols-1 rounded-lg bg-white overflow-hidden md:grid-cols-2"
         >
-          <div class="cursor-pointer">
+          <div class="cursor-pointer" @click="$emit('transact', 'buy')">
             <div
               class="text-center px-4 pr-8 py-2 bg-green-100 shadow hover:bg-green-200 hover:shadow-md active:bg-green-300"
             >
@@ -44,7 +44,7 @@
               </div>
             </div>
           </div>
-          <div class="cursor-pointer">
+          <div class="cursor-pointer" @click="$emit('transact', 'sell')">
             <div
               class="text-center pl-2 py-2.5 bg-red-100 shadow hover:bg-red-200 hover:shadow-md active:bg-red-300"
             >
@@ -66,9 +66,15 @@
       </div>
     </div>
   </div>
-  <!-- </div> -->
 </template>
 
 <script setup lang="ts">
 import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/vue/solid";
+import { queryLatestState } from "@/urql/client";
+
+const emit = defineEmits<{
+  (e: "transact", id: "buy" | "sell"): void;
+}>();
+
+const resultLatestState = await queryLatestState();
 </script>

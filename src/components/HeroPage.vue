@@ -21,6 +21,7 @@ import HeroLanding from "./reusable/HeroLanding.vue";
 import type { HeroLandConfig } from "./reusable/HeroLanding.vue";
 import SummaryTable, { type Section } from "./reusable/SummaryTable.vue";
 import { latestTokenState } from "@/datasets";
+import { queryLatestState } from "@/urql/client";
 
 const heroTableConfig: HeroLandConfig = {
   title: "Interactive Graph Dapp deployed on Rinkeby",
@@ -39,12 +40,15 @@ const heroTableConfig: HeroLandConfig = {
   ],
 };
 
+const { data } = await queryLatestState();
+if (!data) throw "";
+
 const sect: Section[] = [
   {
     title: "Price",
     data: [
       {
-        value: latestTokenState.price,
+        value: data.price,
         unit: "wei",
       },
     ],
@@ -53,19 +57,19 @@ const sect: Section[] = [
     title: "Totals",
     data: [
       {
-        value: latestTokenState.weiIn,
+        value: data.weiIn,
         unit: "wei spent",
       },
       {
-        value: latestTokenState.weiOut,
+        value: data.weiOut,
         unit: "wei withdrawn",
       },
       {
-        value: latestTokenState.noAddress,
+        value: data.noAddress,
         unit: "addresses",
       },
       {
-        value: latestTokenState.noTrades,
+        value: data.noTrades,
         unit: "trades",
       },
     ],

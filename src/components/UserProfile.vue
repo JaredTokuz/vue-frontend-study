@@ -6,7 +6,7 @@
         <div
           class="col-span-3 flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r"
         >
-          <ApexChart :options="chartOptions"></ApexChart>
+          <ApexChart :options="chartOptions" />
         </div>
         <!-- The models the data to be viewed -->
         <div
@@ -15,7 +15,7 @@
           <ListBoxWrapper
             v-model="selectedEquation"
             :list-names="addressProfileViews"
-          ></ListBoxWrapper>
+          />
         </div>
       </div>
     </template>
@@ -30,10 +30,13 @@ import {
 } from "@/address-profile";
 import { computed, ref } from "vue";
 import ApexChart from "./reusable/ApexChart.vue";
-import ListBoxWrapper from "./reusable/headless/ListBoxWrapper.vue";
+import ListBoxWrapper from "./reusable/ListBoxWrapper.vue";
 import TitleGrid from "./reusable/TitleGrid.vue";
+import { queryAddressProfile } from "@/urql/client";
 
-const dataAddressProfile = ref(addressProfiles);
+const resultLatestState = await queryAddressProfile();
+if (!resultLatestState.data) throw "";
+const dataAddressProfile = ref(resultLatestState.data);
 /** initialize the data , axis created once here*/
 const dataStaging = computed(() => {
   return ChartOptionsPieAddressProfile(dataAddressProfile.value);
