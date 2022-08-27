@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* you can overwrite the height by adding it afterwards */
+.container-map {
+  @apply grid grid-cols-1 h-36;
+}
+
+.container-map .map-element {
+  @apply row-span-full col-start-1 col-span-1;
+}

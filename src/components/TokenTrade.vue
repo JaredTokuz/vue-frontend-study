@@ -41,12 +41,7 @@ import { computed, ref } from "vue";
 import ApexChart from "./reusable/ApexChart.vue";
 import ListBoxWrapper from "./reusable/ListBoxWrapper.vue";
 import TitleGrid from "./reusable/TitleGrid.vue";
-import TokenTradeForm from "./TokenTradeForm.vue";
 import ContainerMap from "./TokenTrade/ContainerMap.vue";
-import { queryTokenTrades } from "@/urql/client";
-
-const resultTokenTrades = await queryTokenTrades();
-if (!resultTokenTrades.data) throw "";
 
 const dataTokenTrades = ref(resultTokenTrades.data);
 /** initialize the data , axis created once here*/

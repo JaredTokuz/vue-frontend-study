@@ -70,11 +70,8 @@
 
 <script setup lang="ts">
 import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/vue/solid";
-import { queryLatestState } from "@/urql/client";
 
 const emit = defineEmits<{
   (e: "transact", id: "buy" | "sell"): void;
 }>();
-
-const resultLatestState = await queryLatestState();
 </script>

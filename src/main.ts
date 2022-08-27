@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import VueApexCharts from "vue3-apexcharts";
 import { createPinia } from "pinia";
 import App from "./App.vue";
-import "./assets/output.css";
+import "./index.css";
 
 const pinia = createPinia();
 const app = createApp(App, {});

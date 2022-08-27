@@ -183,7 +183,7 @@ export const addressProfiles: AddressProfile[] = [
 export interface LatestTokenState {
   id: string;
   last_timestamp: number;
-  last_nonce: number;
+  lastNonce: number;
   price: number;
   weiIn: number;
   weiOut: number;
@@ -194,7 +194,7 @@ export interface LatestTokenState {
 export const latestTokenState: LatestTokenState = {
   id: "latest",
   last_timestamp: 12341230,
-  last_nonce: 12341233,
+  lastNonce: 12341233,
   price: 126,
   weiIn: 12230,
   weiOut: 123430,

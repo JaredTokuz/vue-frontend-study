@@ -2,7 +2,7 @@ export const tokenTradeQuery = `
     query {
         tokenTrade {
             id
-            nonce
+            block
             er20Amount
             ethAmount
             timestamp
@@ -29,10 +29,10 @@ export const addressProfileQuery = `
 
 export const latestTokenStateQuery = `
     query {
-        latestTokenState {
+        latestTokenState(id: "latest") {
             id
-            last_timestamp
-            last_nonce
+            lastTimestamp
+            lastBlock
             price
             weiSpent
             weiWithdrawn

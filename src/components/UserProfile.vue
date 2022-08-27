@@ -32,10 +32,7 @@ import { computed, ref } from "vue";
 import ApexChart from "./reusable/ApexChart.vue";
 import ListBoxWrapper from "./reusable/ListBoxWrapper.vue";
 import TitleGrid from "./reusable/TitleGrid.vue";
-import { queryAddressProfile } from "@/urql/client";
 
-const resultLatestState = await queryAddressProfile();
-if (!resultLatestState.data) throw "";
 const dataAddressProfile = ref(resultLatestState.data);
 /** initialize the data , axis created once here*/
 const dataStaging = computed(() => {

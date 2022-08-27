@@ -2,7 +2,7 @@ import {
   queryAddressProfile,
   queryLatestState,
   queryTokenTrades,
-} from "@/urql/client";
+} from "@/urql_dep/client";
 import { defineStore } from "pinia";
 
 export const useBondingCurveStore = defineStore("latestState", async () => {
