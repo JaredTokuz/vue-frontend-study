@@ -1,7 +1,7 @@
 import {
   ChartOptionsDefaultPieSeries,
   type ListBoxCalculator,
-} from "@/utils/ApexCharts";
+} from "@/utils/apexcharts";
 import mergeDeep from "@/utils/mergeDeep";
 import type { ApexOptions } from "apexcharts";
 import type { AddressProfile } from "../../schemas.interface";

@@ -2,7 +2,7 @@ import type { TokenTrades } from "@/components/TokenTrade/schemas.interface";
 import {
   ChartOptionsDefaultLineSeries,
   type ListBoxCalculator,
-} from "@/utils/ApexCharts";
+} from "@/utils/apexcharts";
 import mergeDeep from "@/utils/mergeDeep";
 import type { ApexOptions } from "apexcharts";
 

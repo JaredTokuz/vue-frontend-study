@@ -1,5 +1,5 @@
 import type { ApexOptions } from "apexcharts";
-import mergeDeep from "../mergeDeep";
+import mergeDeep from "./mergeDeep";
 
 /**
  * merge deep with defaults here

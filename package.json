@@ -11,7 +11,7 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "tailwind": "npx tailwindcss -i ./input.css -o ./src/assets/output.css --watch"
+    "tailwind:deprecate": "npx tailwindcss -i ./input.css -o ./src/assets/output.css --watch"
   },
   "dependencies": {
     "@headlessui/vue": "^1.6.7",
