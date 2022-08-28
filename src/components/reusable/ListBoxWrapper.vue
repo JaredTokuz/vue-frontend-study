@@ -12,7 +12,7 @@
 
         <span class="absolute inset-y-0 right-0 flex pr-2 pointer-events-none">
           <ChevronDoubleDownIcon
-            class="h-8 w-5 text-gray-400"
+            class="h-8 w-5 pt-2 text-gray-400"
             aria-hidden="true"
           />
         </span>
