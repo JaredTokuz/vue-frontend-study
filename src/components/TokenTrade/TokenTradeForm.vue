@@ -17,7 +17,7 @@
               class="flex-shrink-0 mx-auto h-5 w-5 text-xl"
               aria-hidden="true"
             >
-              {{ resultLatestState.data }}
+              {{ price }}
             </div>
           </div>
         </div>
@@ -70,8 +70,16 @@
 
 <script setup lang="ts">
 import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/vue/solid";
+import { computed } from "vue";
+import { QueryLatestTokenState } from "./composables/latest-token-query";
 
 const emit = defineEmits<{
   (e: "transact", id: "buy" | "sell"): void;
 }>();
+
+const { latestTokenState } = QueryLatestTokenState();
+
+const price = computed<any>(() => {
+  return latestTokenState.value?.price || "🤡";
+});
 </script>

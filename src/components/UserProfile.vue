@@ -23,23 +23,23 @@
 </template>
 
 <script setup lang="ts">
-import { addressProfiles } from "@/datasets";
 import {
   ChartOptionsPieAddressProfile,
   addressProfileViews,
-} from "@/address-profile";
+} from "@/components/TokenTrade/composables/functions/address-profile";
 import { computed, ref } from "vue";
 import ApexChart from "./reusable/ApexChart.vue";
 import ListBoxWrapper from "./reusable/ListBoxWrapper.vue";
 import TitleGrid from "./reusable/TitleGrid.vue";
+import { QueryAddressProfiles } from "./TokenTrade/composables/address-profile-query";
 
-const dataAddressProfile = ref(resultLatestState.data);
+const { addressProfiles } = QueryAddressProfiles();
 /** initialize the data , axis created once here*/
 const dataStaging = computed(() => {
-  return ChartOptionsPieAddressProfile(dataAddressProfile.value);
+  return ChartOptionsPieAddressProfile(addressProfiles.value || []);
 });
 
-const selectedEquation = ref(addressProfileViews[0]);
+const selectedEquation = ref(addressProfileViews[1]);
 
 /** whenever the list box select has changed */
 const chartOptions = computed(() => {

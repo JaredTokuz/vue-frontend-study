@@ -81,7 +81,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import TransitionWrap from "../reusable/TransitionWrap.vue";
-import TokenTradeForm from "../TokenTradeForm.vue";
+import TokenTradeForm from "./TokenTradeForm.vue";
 import { XIcon } from "@heroicons/vue/outline";
 
 const displays = ["main", "buy", "sell"] as const;

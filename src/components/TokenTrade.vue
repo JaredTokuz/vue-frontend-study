@@ -32,21 +32,21 @@
 </template>
 
 <script setup lang="ts">
-import { tokenTrades } from "@/datasets";
 import {
   ChartOptionsLineTokenTrades,
   tokenTradeEquations,
-} from "@/token-trade";
+} from "@/components/TokenTrade/composables/functions/token-trade";
 import { computed, ref } from "vue";
 import ApexChart from "./reusable/ApexChart.vue";
 import ListBoxWrapper from "./reusable/ListBoxWrapper.vue";
 import TitleGrid from "./reusable/TitleGrid.vue";
+import { QueryTokenTrades } from "./TokenTrade/composables/token-trade-query";
 import ContainerMap from "./TokenTrade/ContainerMap.vue";
 
-const dataTokenTrades = ref(resultTokenTrades.data);
+const { tokenTrades } = QueryTokenTrades();
 /** initialize the data , axis created once here*/
 const dataStaging = computed(() => {
-  return ChartOptionsLineTokenTrades(dataTokenTrades.value);
+  return ChartOptionsLineTokenTrades(tokenTrades.value || []);
 });
 
 const selectedEquation = ref(tokenTradeEquations[0]);

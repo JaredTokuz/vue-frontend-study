@@ -1,13 +1,4 @@
-export interface TokenTrades {
-  id: string;
-  nonce: number;
-  er20Amount: number;
-  ethAmount: number;
-  timestamp: number;
-  tradeType: "Burn" | "Mint";
-  address: string;
-}
-export const tokenTrades: TokenTrades[] = [
+export const tokenTrades: any[] = [
   {
     id: "0",
     nonce: 0,
@@ -136,18 +127,7 @@ export const tokenTrades: TokenTrades[] = [
   },
 ];
 
-export interface AddressProfile {
-  id: string;
-  address: string;
-  erc20Purchased: number;
-  erc20Sold: number;
-  weiSpent: number;
-  weiSold: number;
-  weiNetRealized: number;
-  noTrades: number;
-}
-
-export const addressProfiles: AddressProfile[] = [
+export const addressProfiles: any[] = [
   {
     id: "adf",
     address: "asdfads",
@@ -180,24 +160,13 @@ export const addressProfiles: AddressProfile[] = [
   },
 ];
 
-export interface LatestTokenState {
-  id: string;
-  last_timestamp: number;
-  lastNonce: number;
-  price: number;
-  weiIn: number;
-  weiOut: number;
-  noAddress: number;
-  noTrades: number;
-}
-
-export const latestTokenState: LatestTokenState = {
+export const latestTokenState: any = {
   id: "latest",
-  last_timestamp: 12341230,
-  lastNonce: 12341233,
-  price: 126,
-  weiIn: 12230,
-  weiOut: 123430,
-  noAddress: 3,
-  noTrades: 96,
+  lastTimestamp: "12341230",
+  lastBlock: "12341233",
+  price: "126",
+  weiSpent: "12230",
+  weiWithdrawn: "123430",
+  noAddress: "3",
+  noTrades: "96",
 };

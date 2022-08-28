@@ -5,9 +5,10 @@
         <template v-slot:caption>
           <p class="text-xs leading-5 text-gray-500">
             Last transacted on
-            <span class="text-gray-900"> {{ "2/2/2022" }} </span>, at nonce
+            <span class="text-gray-900"> {{ footer.lastTimestamp }} </span>, at
+            block
             <a href="#" class="font-medium text-gray-900 hover:underline">
-              {{ latestTokenState.lastNonce }}</a
+              {{ footer.lastBlock }}</a
             >.
           </p>
         </template>
@@ -17,13 +18,16 @@
 </template>
 
 <script setup lang="ts">
-import { useQuery } from "@urql/vue";
 import HeroLanding from "./reusable/HeroLanding.vue";
 import type { HeroLandConfig } from "./reusable/HeroLanding.vue";
-import SummaryTable, { type Section } from "./reusable/SummaryTable.vue";
-import { latestTokenState } from "@/datasets";
-import { latestTokenStateQuery } from "@/urql/queries";
-import { computed, reactive, ref } from "vue";
+import SummaryTable from "./reusable/SummaryTable.vue";
+import { computed } from "vue";
+import {
+  createDataEntry,
+  createSection,
+  type Section,
+} from "./reusable/utils/sections";
+import { QueryLatestTokenState } from "./TokenTrade/composables/latest-token-query";
 
 const heroTableConfig: HeroLandConfig = {
   title: "Interactive Graph Dapp deployed on Rinkeby",
@@ -42,79 +46,32 @@ const heroTableConfig: HeroLandConfig = {
   ],
 };
 
-const result = useQuery({
-  query: latestTokenStateQuery,
-});
+const { latestTokenState } = QueryLatestTokenState();
 
 const sect = computed<Section[]>(() => {
-  console.log(result);
-  console.log("data", result.data.value);
-  console.log("error", result.error.value);
-  console.log("fetching", result.fetching.value);
   return [
-    {
-      title: "Price",
-      data: [
-        {
-          value: result.data.value.price,
-          unit: "wei",
-        },
-      ],
-    },
-    {
-      title: "Totals",
-      data: [
-        {
-          value: result.data.value.weiIn,
-          unit: "wei spent",
-        },
-        {
-          value: result.data.value.weiOut,
-          unit: "wei withdrawn",
-        },
-        {
-          value: result.data.value.noAddress,
-          unit: "addresses",
-        },
-        {
-          value: result.data.value.noTrades,
-          unit: "trades",
-        },
-      ],
-    },
+    createSection("Price", [
+      createDataEntry(latestTokenState.value?.price || "-", "wei"),
+    ]),
+    createSection("Totals", [
+      createDataEntry(latestTokenState.value?.weiSpent || "-", "wei spent"),
+      createDataEntry(
+        latestTokenState.value?.weiWithdrawn || "-",
+        "wei withdrawn"
+      ),
+      createDataEntry(latestTokenState.value?.noAddress || "-", "addresses"),
+      createDataEntry(latestTokenState.value?.noTrades || "-", "trades"),
+    ]),
   ];
 });
 
-// const _sect: Section[] = [
-//   {
-//     title: "Price",
-//     data: [
-//       {
-//         value: result.data.value.price,
-//         unit: "wei",
-//       },
-//     ],
-//   },
-//   {
-//     title: "Totals",
-//     data: [
-//       {
-//         value: result.data.value.weiIn,
-//         unit: "wei spent",
-//       },
-//       {
-//         value: result.data.value.weiOut,
-//         unit: "wei withdrawn",
-//       },
-//       {
-//         value: result.data.value.noAddress,
-//         unit: "addresses",
-//       },
-//       {
-//         value: result.data.value.noTrades,
-//         unit: "trades",
-//       },
-//     ],
-//   },
-// ];
+const footer = computed(() => {
+  const ts = latestTokenState.value?.lastTimestamp
+    ? new Date(+latestTokenState.value?.lastTimestamp * 1000)
+    : "-";
+  return {
+    lastTimestamp: ts,
+    lastBlock: latestTokenState.value?.lastBlock || "-",
+  };
+});
 </script>

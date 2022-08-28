@@ -1,10 +1,10 @@
-import type { ApexOptions } from "apexcharts";
-import type { TokenTrades } from "./datasets";
+import type { TokenTrades } from "@/components/TokenTrade/schemas.interface";
 import {
   ChartOptionsDefaultLineSeries,
   type ListBoxCalculator,
-} from "./utils/ApexCharts";
-import mergeDeep from "./utils/mergeDeep";
+} from "@/utils/ApexCharts";
+import mergeDeep from "@/utils/mergeDeep";
+import type { ApexOptions } from "apexcharts";
 
 export type ListBoxCalTokenTrades = ListBoxCalculator<TokenTrades, number[]>;
 
@@ -14,7 +14,7 @@ export type ListBoxCalTokenTrades = ListBoxCalculator<TokenTrades, number[]>;
  * @returns
  */
 export const ChartOptionsLineTokenTrades = (data: TokenTrades[]) => {
-  const categories = data.map((x) => x.nonce);
+  const categories = data.map((x) => x.block);
   const defaultChartOptions = ChartOptionsDefaultLineSeries();
 
   return {
@@ -50,10 +50,10 @@ export const tokenTradeEquations: ListBoxCalTokenTrades[] = [
       const series: number[] = [];
       let current = 1;
       for (const t of trades) {
-        if (t.tradeType == "Mint") {
-          current += t.er20Amount;
+        if (t.tradeType == "mint") {
+          current += t.erc20Amount;
         } else {
-          current -= t.er20Amount;
+          current -= t.erc20Amount;
         }
         series.push(current);
       }
@@ -68,7 +68,7 @@ export const tokenTradeEquations: ListBoxCalTokenTrades[] = [
       const series: number[] = [];
       let current = 0;
       trades.forEach((t) => {
-        if (t.tradeType == "Mint") {
+        if (t.tradeType == "mint") {
           current += t.ethAmount;
         }
         series.push(current);
@@ -84,7 +84,7 @@ export const tokenTradeEquations: ListBoxCalTokenTrades[] = [
       const series: number[] = [];
       let current = 0;
       trades.forEach((t) => {
-        if (t.tradeType == "Burn") {
+        if (t.tradeType == "burn") {
           current += t.ethAmount;
         }
         series.push(current);
@@ -101,7 +101,7 @@ export const tokenTradeEquations: ListBoxCalTokenTrades[] = [
       const series: number[] = [];
       let current = 0;
       trades.forEach((t) => {
-        if (t.tradeType == "Mint") {
+        if (t.tradeType == "mint") {
           if (!setAddress.has(t.address)) {
             current += 1;
             setAddress.add(t.address);

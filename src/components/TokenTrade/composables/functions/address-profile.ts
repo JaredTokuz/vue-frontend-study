@@ -1,10 +1,10 @@
-import type { ApexOptions } from "apexcharts";
-import type { AddressProfile } from "./datasets";
 import {
   ChartOptionsDefaultPieSeries,
   type ListBoxCalculator,
-} from "./utils/ApexCharts";
-import mergeDeep from "./utils/mergeDeep";
+} from "@/utils/ApexCharts";
+import mergeDeep from "@/utils/mergeDeep";
+import type { ApexOptions } from "apexcharts";
+import type { AddressProfile } from "../../schemas.interface";
 
 export type ListBoxCalAddressProfile = ListBoxCalculator<
   AddressProfile,
@@ -54,7 +54,7 @@ export const addressProfileViews: ListBoxCalAddressProfile[] = [
       const dataFormatted = DataFormat();
       profiles.forEach((x) => {
         dataFormatted.series.push(x.weiNetRealized);
-        dataFormatted.labels.push(x.address);
+        dataFormatted.labels.push(truncateAddress(x.address));
       });
       return dataFormatted;
     },
@@ -67,7 +67,7 @@ export const addressProfileViews: ListBoxCalAddressProfile[] = [
       const dataFormatted = DataFormat();
       profiles.forEach((x) => {
         dataFormatted.series.push(x.weiSpent);
-        dataFormatted.labels.push(x.address);
+        dataFormatted.labels.push(truncateAddress(x.address));
       });
       return dataFormatted;
     },
@@ -80,7 +80,7 @@ export const addressProfileViews: ListBoxCalAddressProfile[] = [
       const dataFormatted = DataFormat();
       profiles.forEach((x) => {
         dataFormatted.series.push(x.erc20Sold);
-        dataFormatted.labels.push(x.address);
+        dataFormatted.labels.push(truncateAddress(x.address));
       });
       return dataFormatted;
     },
@@ -93,9 +93,13 @@ export const addressProfileViews: ListBoxCalAddressProfile[] = [
       const dataFormatted = DataFormat();
       profiles.forEach((x) => {
         dataFormatted.series.push(x.noTrades);
-        dataFormatted.labels.push(x.address);
+        dataFormatted.labels.push(truncateAddress(x.address));
       });
       return dataFormatted;
     },
   },
 ];
+
+const truncateAddress = (address: string) => {
+  return address.length > 6 ? address.slice(0, 6) + "..." : address;
+};

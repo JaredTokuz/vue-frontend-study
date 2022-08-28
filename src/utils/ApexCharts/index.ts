@@ -47,7 +47,7 @@ export const ChartOptionsDefaultPieSeries = () => {
     dataLabels: {
       enabled: true,
       formatter: (val: number) => {
-        return val.toFixed(2) + "%";
+        return val.toFixed(1) + "%";
       },
       dropShadow: {
         enabled: true,

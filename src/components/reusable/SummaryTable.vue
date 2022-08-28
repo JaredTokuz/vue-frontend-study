@@ -53,14 +53,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-
-export interface Section {
-  title: string;
-  data: {
-    value: number;
-    unit: string;
-  }[];
-}
+import type { Section } from "./utils/sections";
 
 const props = defineProps<{ section: Section[] }>();
 
