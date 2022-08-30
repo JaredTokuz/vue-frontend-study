@@ -2,7 +2,7 @@
   <div class="container-map">
     <TransitionWrap class="map-element" :is-showing="selected == 'main'">
       <template v-slot:content>
-        <TokenTradeForm @transact="changeSelected" />
+        <TokenTradeFront @transact="changeSelected" />
       </template>
     </TransitionWrap>
     <TransitionWrap class="map-element" :is-showing="selected == 'buy'">
@@ -81,8 +81,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import TransitionWrap from "../reusable/TransitionWrap.vue";
-import TokenTradeForm from "./TokenTradeForm.vue";
+import TokenTradeFront from "./TokenTradeFront.vue";
 import { XIcon } from "@heroicons/vue/outline";
+import { WalletConnection } from "./composables/wallet-connection";
 
 const displays = ["main", "buy", "sell"] as const;
 type Displays = typeof displays[number];
@@ -99,8 +100,9 @@ const changeSelected = (value: Displays) => {
   selected.value = value;
 };
 
-const buyTokens = () => {
+const buyTokens = async () => {
   insertedWei.value = 0;
+  await connectWallet();
   changeSelected("main");
 };
 
@@ -108,4 +110,7 @@ const sellTokens = () => {
   insertedErc20.value = 0;
   changeSelected("main");
 };
+
+const { connectWallet, walletStore, network_ok, targetNetwork } =
+  WalletConnection();
 </script>

@@ -3,10 +3,10 @@
     appear
     :show="isShowing"
     as="template"
-    enter="transform transition delay-300 duration-[400ms]"
+    enter="transform transition delay-75 duration-100"
     enter-from="opacity-0 rotate-[-120deg] scale-50"
     enter-to="opacity-100 rotate-0 scale-100"
-    leave="transform duration-200 transition ease-in-out"
+    leave="transform duration-75 transition ease-in-out"
     leave-from="opacity-100 rotate-0 scale-100 "
     leave-to="opacity-0 scale-95 "
   >

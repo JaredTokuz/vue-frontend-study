@@ -22,8 +22,9 @@
           </div>
         </div>
       </div>
-      <div class="col-span-1">
+      <div id="right-col" class="col-span-1">
         <div
+          id="button-container"
           class="grid grid-cols-1 rounded-lg bg-white overflow-hidden md:grid-cols-2"
         >
           <div class="cursor-pointer" @click="$emit('transact', 'buy')">
@@ -70,7 +71,7 @@
 
 <script setup lang="ts">
 import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/vue/solid";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { QueryLatestTokenState } from "./composables/latest-token-query";
 
 const emit = defineEmits<{

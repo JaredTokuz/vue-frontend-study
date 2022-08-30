@@ -21,7 +21,8 @@
     "graphql": "^16.6.0",
     "pinia": "^2.0.18",
     "vue": "^3.2.37",
-    "vue3-apexcharts": "^1.4.1"
+    "vue3-apexcharts": "^1.4.1",
+    "web3": "^1.7.5"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
