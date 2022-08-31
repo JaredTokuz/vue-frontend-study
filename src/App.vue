@@ -5,9 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import HeroPage from "./components/HeroPage.vue";
-import TokenTrade from "./components/TokenTrade.vue";
-import UserProfile from "./components/UserProfile.vue";
+import HeroPage from "./components/TokenTrade/HeroPage.vue";
+import TokenTrade from "./components/TokenTrade/TokenTrade.vue";
+import UserProfile from "./components/TokenTrade/UserProfile.vue";
 import Web3 from "web3";
 import { createClient, provideClient } from "@urql/vue";
 import { onMounted } from "vue";

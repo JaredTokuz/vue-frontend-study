@@ -41,7 +41,7 @@ import ApexChart from "./reusable/ApexChart.vue";
 import ListBoxWrapper from "./reusable/ListBoxWrapper.vue";
 import TitleGrid from "./reusable/TitleGrid.vue";
 import { QueryTokenTrades } from "./TokenTrade/composables/token-trade-query";
-import ContainerMap from "./TokenTrade/ContainerMap.vue";
+import ContainerMap from "./ContainerMap.vue";
 
 const { tokenTrades } = QueryTokenTrades();
 /** initialize the data , axis created once here*/
