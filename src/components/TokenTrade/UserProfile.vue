@@ -26,12 +26,12 @@
 import {
   ChartOptionsPieAddressProfile,
   addressProfileViews,
-} from "@/components/TokenTrade/composables/functions/address-profile";
+} from "@/helpers/address-profile";
 import { computed, ref } from "vue";
-import ApexChart from "./reusable/ApexChart.vue";
-import ListBoxWrapper from "./reusable/ListBoxWrapper.vue";
-import TitleGrid from "./reusable/TitleGrid.vue";
-import { QueryAddressProfiles } from "./TokenTrade/composables/address-profile-query";
+import ApexChart from "@/components/globals/ApexChart.vue";
+import ListBoxWrapper from "@/components/globals/ListBoxWrapper.vue";
+import TitleGrid from "@/components/globals/TitleGrid.vue";
+import { QueryAddressProfiles } from "@/composables/address-profile-query";
 
 const { addressProfiles } = QueryAddressProfiles();
 /** initialize the data , axis created once here*/

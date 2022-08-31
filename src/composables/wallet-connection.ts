@@ -17,14 +17,14 @@ export function WalletConnection() {
   const checkNetwork = async () => {
     // @ts-expect-error Window.ethereum not typed
     if (window.ethereum) {
-      // @ts-expect-error Window.ethereum not typed
+      // @ts-expect-error Window.ethereum not typed SERVICE
       const currentChainId = await window.ethereum.request({
         method: "eth_chainId",
       });
       if (currentChainId == targetNetworkId) network_ok.value = true;
     }
   };
-  // switches network to the one provided in env variable
+  // switches network to the one provided in env variable SERVICE
   const switchNetwork = async () => {
     // @ts-expect-error Window.ethereum not typed
     await window.ethereum.request({
@@ -38,7 +38,7 @@ export function WalletConnection() {
   const connectWallet = async () => {
     if (!network_ok.value) await switchNetwork();
     try {
-      // @ts-expect-error Window.ethereum not typed
+      // @ts-expect-error Window.ethereum not typed SERVICE
       const data = await window.ethereum.request({
         method: "eth_requestAccounts",
       });

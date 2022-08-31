@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
+/** add services that get data such as meta mask provider and the accounts, eth balances, get account, */
 export interface WalletData {
   address: string;
   acc_short: string;

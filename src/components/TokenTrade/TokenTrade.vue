@@ -35,12 +35,12 @@
 import {
   ChartOptionsLineTokenTrades,
   tokenTradeEquations,
-} from "@/components/TokenTrade/composables/functions/token-trade";
+} from "@/helpers/token-trade";
 import { computed, ref } from "vue";
-import ApexChart from "./reusable/ApexChart.vue";
-import ListBoxWrapper from "./reusable/ListBoxWrapper.vue";
-import TitleGrid from "./reusable/TitleGrid.vue";
-import { QueryTokenTrades } from "./TokenTrade/composables/token-trade-query";
+import ApexChart from "@/components/globals/ApexChart.vue";
+import ListBoxWrapper from "@/components/globals/ListBoxWrapper.vue";
+import TitleGrid from "@/components/globals/TitleGrid.vue";
+import { QueryTokenTrades } from "@/composables/token-trade-query";
 import ContainerMap from "./ContainerMap.vue";
 
 const { tokenTrades } = QueryTokenTrades();

@@ -18,16 +18,16 @@
 </template>
 
 <script setup lang="ts">
-import HeroLanding from "./reusable/HeroLanding.vue";
-import type { HeroLandConfig } from "./reusable/HeroLanding.vue";
-import SummaryTable from "./reusable/SummaryTable.vue";
+import HeroLanding from "../globals/HeroLanding.vue";
+import type { HeroLandConfig } from "../globals/HeroLanding.vue";
+import SummaryTable from "../globals/SummaryTable.vue";
 import { computed } from "vue";
 import {
   createDataEntry,
   createSection,
   type Section,
-} from "./reusable/utils/sections";
-import { QueryLatestTokenState } from "./TokenTrade/composables/latest-token-query";
+} from "@/helpers/sections";
+import { QueryLatestTokenState } from "@/composables/latest-token-query";
 
 const heroTableConfig: HeroLandConfig = {
   title: "Interactive Graph Dapp deployed on Rinkeby",

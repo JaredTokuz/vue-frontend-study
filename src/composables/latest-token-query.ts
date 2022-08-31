@@ -1,6 +1,6 @@
+import { LatestTokenState } from "@/components/TokenTrade/schemas.interface";
 import { useQuery } from "@urql/vue";
 import { computed, watchEffect } from "vue";
-import type { LatestTokenState } from "../schemas.interface";
 
 export const latestTokenStateQuery = `
     query {

@@ -80,10 +80,10 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import TransitionWrap from "../reusable/TransitionWrap.vue";
+import TransitionWrap from "@/components/globals/TransitionWrap.vue";
 import TokenTradeFront from "./TokenTradeFront.vue";
 import { XIcon } from "@heroicons/vue/outline";
-import { WalletConnection } from "./composables/wallet-connection";
+import { WalletConnection } from "@/composables/wallet-connection";
 
 const displays = ["main", "buy", "sell"] as const;
 type Displays = typeof displays[number];

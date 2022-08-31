@@ -52,8 +52,8 @@
 </template>
 
 <script setup lang="ts">
+import type { Section } from "@/helpers/sections";
 import { computed } from "vue";
-import type { Section } from "./utils/sections";
 
 const props = defineProps<{ section: Section[] }>();
 

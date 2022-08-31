@@ -1,6 +1,6 @@
+import { AddressProfile } from "@/components/TokenTrade/schemas.interface";
 import { useQuery } from "@urql/vue";
 import { computed, watchEffect } from "vue";
-import type { AddressProfile, LatestTokenState } from "../schemas.interface";
 
 export const addressProfileQuery = `
     query {
@@ -18,6 +18,7 @@ export const addressProfileQuery = `
 `;
 
 export function QueryAddressProfiles() {
+  // manage in store
   const results = useQuery({
     query: addressProfileQuery,
   });
