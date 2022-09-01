@@ -11,8 +11,6 @@ export const metaMaskProvider = () => {
   return new ethers.providers.Web3Provider(window.ethereum);
 };
 
-type MetaMaskProvider = ReturnType<typeof metaMaskProvider>;
-
 /* Connecting to Ethereum via JSON-RPC */
 
 // If you don't specify a url, Ethers connects to the default
@@ -23,20 +21,17 @@ export const jsonRPCProvider = () => {
   return provider;
 };
 
-type RpcProvider = ReturnType<typeof jsonRPCProvider>;
-
-// only export this provider
-export type EthersProviders = MetaMaskProvider & RpcProvider;
-
 // MetaMask requires requesting permission to connect users accounts
-export const requestAccounts = async (provider: EthersProviders) => {
+export const requestAccounts = async (
+  provider: ethers.providers.Web3Provider
+) => {
   return provider.send("eth_requestAccounts", []);
 };
 
 // The Contract object
 export const getBondingCurveContract = (
   addressOrName: string,
-  provider: EthersProviders
+  provider: ethers.providers.Provider | ethers.Signer
 ) => {
   const contract = new SimpleBondingCurve(
     addressOrName, // ens acceptable
