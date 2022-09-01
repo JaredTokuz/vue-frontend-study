@@ -22,11 +22,7 @@ import HeroLanding from "../globals/HeroLanding.vue";
 import type { HeroLandConfig } from "../globals/HeroLanding.vue";
 import SummaryTable from "../globals/SummaryTable.vue";
 import { computed } from "vue";
-import {
-  createDataEntry,
-  createSection,
-  type Section,
-} from "@/helpers/sections";
+import { createDataEntry, createSection, type Section } from "@/utils/sections";
 import { QueryLatestTokenState } from "@/composables/latest-token-query";
 
 const heroTableConfig: HeroLandConfig = {

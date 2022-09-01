@@ -35,7 +35,7 @@
 import {
   ChartOptionsLineTokenTrades,
   tokenTradeEquations,
-} from "@/helpers/token-trade";
+} from "@/utils/token-trade";
 import { computed, ref } from "vue";
 import ApexChart from "@/components/globals/ApexChart.vue";
 import ListBoxWrapper from "@/components/globals/ListBoxWrapper.vue";

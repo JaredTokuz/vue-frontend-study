@@ -9,27 +9,24 @@ export function WalletConnection() {
   });
 
   const walletStore = useWalletStore();
-  const targetNetwork = import.meta.env.VITE_BLOCKCHAIN_NETWORK_NAME;
-  const targetNetworkId = import.meta.env.VITE_BLOCKCHAIN_NETWORK_ID || "0x1";
+  // const targetNetwork = import.meta.env.VITE_BLOCKCHAIN_NETWORK_NAME;
+  // const targetNetworkId = import.meta.env.VITE_BLOCKCHAIN_NETWORK_ID || "0x1";
   const network_ok = ref<boolean>(false);
 
   // checks if current chain matches with the one provided in env variable
   const checkNetwork = async () => {
-    // @ts-expect-error Window.ethereum not typed
     if (window.ethereum) {
-      // @ts-expect-error Window.ethereum not typed SERVICE
       const currentChainId = await window.ethereum.request({
         method: "eth_chainId",
       });
-      if (currentChainId == targetNetworkId) network_ok.value = true;
+      // if (currentChainId == targetNetworkId) network_ok.value = true;
     }
   };
   // switches network to the one provided in env variable SERVICE
   const switchNetwork = async () => {
-    // @ts-expect-error Window.ethereum not typed
     await window.ethereum.request({
       method: "wallet_switchEthereumChain",
-      params: [{ chainId: targetNetworkId }],
+      // params: [{ chainId: targetNetworkId }],
     });
     // refresh
     window.location.reload();
@@ -38,7 +35,6 @@ export function WalletConnection() {
   const connectWallet = async () => {
     if (!network_ok.value) await switchNetwork();
     try {
-      // @ts-expect-error Window.ethereum not typed SERVICE
       const data = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
@@ -57,6 +53,6 @@ export function WalletConnection() {
     checkNetwork,
     switchNetwork,
     network_ok,
-    targetNetwork,
+    // targetNetwork,
   };
 }

@@ -2,8 +2,8 @@ import type { TokenTrades } from "@/components/TokenTrade/schemas.interface";
 import {
   ChartOptionsDefaultLineSeries,
   type ListBoxCalculator,
-} from "@/helpers/apexcharts";
-import mergeDeep from "@/helpers/mergeDeep";
+} from "@/utils/apexcharts";
+import mergeDeep from "@/utils/mergeDeep";
 import type { ApexOptions } from "apexcharts";
 
 export type ListBoxCalTokenTrades = ListBoxCalculator<TokenTrades, number[]>;

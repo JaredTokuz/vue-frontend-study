@@ -1,10 +1,10 @@
+import { AddressProfile } from "@/components/TokenTrade/schemas.interface";
 import {
   ChartOptionsDefaultPieSeries,
   type ListBoxCalculator,
-} from "@/helpers/apexcharts";
-import mergeDeep from "@/helpers/mergeDeep";
+} from "@/utils/apexcharts";
+import mergeDeep from "@/utils/mergeDeep";
 import type { ApexOptions } from "apexcharts";
-import type { AddressProfile } from "../../schemas.interface";
 
 export type ListBoxCalAddressProfile = ListBoxCalculator<
   AddressProfile,

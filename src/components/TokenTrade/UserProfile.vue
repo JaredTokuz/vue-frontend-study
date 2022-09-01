@@ -26,7 +26,7 @@
 import {
   ChartOptionsPieAddressProfile,
   addressProfileViews,
-} from "@/helpers/address-profile";
+} from "@/utils/address-profile";
 import { computed, ref } from "vue";
 import ApexChart from "@/components/globals/ApexChart.vue";
 import ListBoxWrapper from "@/components/globals/ListBoxWrapper.vue";
