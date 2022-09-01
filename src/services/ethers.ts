@@ -11,6 +11,53 @@ export const metaMaskProvider = () => {
   return new ethers.providers.Web3Provider(window.ethereum);
 };
 
+/**
+ *
+ * @returns return an array of accounts[the one selected] if the app has the permission to access the wallet. If not, will fire up the permission request and then return the array of accounts
+ */
+export const requestAccounts = async (): Promise<string[]> => {
+  try {
+    const provider = metaMaskProvider();
+    return provider.send("eth_requestAccounts", []);
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("Error during the dApp approval");
+    }
+  }
+};
+
+/**
+ *
+ * @returns Array of accounts. For now, it will return always an array with the account selected in metamask. In the future, will return an array of accounts
+ */
+export const getAccounts = async (): Promise<string[]> => {
+  try {
+    const provider = metaMaskProvider();
+    return provider.send("eth_accounts", []);
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("Error trying to get your accounts[s]");
+    }
+  }
+};
+
+export const getChainId = async (): Promise<string> => {
+  try {
+    const provider = metaMaskProvider();
+    return provider.send("eth_chainId", []);
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    } else {
+      throw new Error("Error getting the chain id");
+    }
+  }
+};
+
 /* Connecting to Ethereum via JSON-RPC */
 
 // If you don't specify a url, Ethers connects to the default
@@ -21,20 +68,12 @@ export const jsonRPCProvider = () => {
   return provider;
 };
 
-// MetaMask requires requesting permission to connect users accounts
-export const requestAccounts = async (
-  provider: ethers.providers.Web3Provider
-) => {
-  return provider.send("eth_requestAccounts", []);
-};
-
 // The Contract object
 export const getBondingCurveContract = (
-  addressOrName: string,
   provider: ethers.providers.Provider | ethers.Signer
 ) => {
   const contract = new SimpleBondingCurve(
-    addressOrName, // ens acceptable
+    import.meta.env.VITE_BONDINGCURVE_CONTRACT_ADDRESS, // ens acceptable as well
     simpleBondingCurve,
     provider
   );

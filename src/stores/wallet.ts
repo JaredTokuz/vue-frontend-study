@@ -1,5 +1,7 @@
+import { metaMaskProvider } from "@/services/ethers";
+import type { ethers } from "ethers";
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 /** add services that get data such as meta mask provider and the accounts, eth balances, get account, */
 export interface WalletData {
@@ -9,19 +11,31 @@ export interface WalletData {
 
 export const useWalletStore = defineStore("wallet", () => {
   const address = ref("");
-  const provider = ref(null);
-  const acc_short = ref("");
+  const connected = ref(false);
+  const installed = ref(false);
+  const chainId = ref("");
+  const ens = ref("");
+  const avatar = ref("");
+  const walletType = ref("");
+  const ethBalance = ref("");
+
+  const acc_short = computed(() => {
+    return `${address.value.slice(0, 2)}...${address.value.slice(-4)}`;
+  });
+
   const saveWalletData = (payload: Pick<WalletData, "address">) => {
     address.value = payload.address;
-    acc_short.value = `${payload.address.slice(0, 2)}...${payload.address.slice(
-      -4
-    )}`;
+  };
+
+  /** set providee data to update store info about the type being used  */
+  const setProvider = () => {
+    const provider = metaMaskProvider();
   };
 
   return {
     address,
-    provider,
     acc_short,
     saveWalletData,
+    setProvider,
   };
 });
