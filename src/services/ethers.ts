@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import simpleBondingCurve from "@/types/SimpleBondingCurve.json";
-import { SimpleBondingCurve } from "@/types/SimpleBondingCurve";
+// import { SimpleBondingCurve } from "@/types/SimpleBondingCurve";
 
 /*
  * A Web3 Provider wraps a standard Web3 provider, which is
@@ -69,13 +69,13 @@ export const jsonRPCProvider = () => {
 };
 
 // The Contract object
-export const getBondingCurveContract = (
-  provider: ethers.providers.Provider | ethers.Signer
-) => {
-  const contract = new SimpleBondingCurve(
-    import.meta.env.VITE_BONDINGCURVE_CONTRACT_ADDRESS, // ens acceptable as well
-    simpleBondingCurve,
-    provider
-  );
-  return contract;
-};
+// export const getBondingCurveContract = (
+//   provider: ethers.providers.Provider | ethers.Signer
+// ) => {
+//   const contract = new SimpleBondingCurve(
+//     import.meta.env.VITE_BONDINGCURVE_CONTRACT_ADDRESS, // ens acceptable as well
+//     simpleBondingCurve,
+//     provider
+//   );
+//   return contract;
+// };

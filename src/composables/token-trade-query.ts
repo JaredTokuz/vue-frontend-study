@@ -1,4 +1,4 @@
-import { TokenTrades } from "@/components/TokenTrade/schemas.interface";
+import type { TokenTrades } from "@/components/TokenTrade/schemas.interface";
 import { useQuery } from "@urql/vue";
 import { computed, watchEffect } from "vue";
 

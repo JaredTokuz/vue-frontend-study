@@ -1,4 +1,4 @@
-import { AddressProfile } from "@/components/TokenTrade/schemas.interface";
+import type { AddressProfile } from "@/components/TokenTrade/schemas.interface";
 import {
   ChartOptionsDefaultPieSeries,
   type ListBoxCalculator,

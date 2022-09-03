@@ -1,10 +1,5 @@
-<template>
-  <HeroPage />
-  <TokenTrade />
-  <UserProfile />
-</template>
-
 <script setup lang="ts">
+import StatusContainer from "./components/StatusContainer.vue";
 import HeroPage from "./components/TokenTrade/HeroPage.vue";
 import TokenTrade from "./components/TokenTrade/TokenTrade.vue";
 import UserProfile from "./components/TokenTrade/UserProfile.vue";
@@ -33,3 +28,10 @@ onMounted(() => {
   });
 });
 </script>
+
+<template>
+  <StatusContainer />
+  <HeroPage />
+  <TokenTrade />
+  <UserProfile />
+</template>
