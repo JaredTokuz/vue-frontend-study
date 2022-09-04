@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import connect from "@/connect/index";
+import connect from "@/composables/wallets";
 
-const { connectWalletConnect, state, disconnectWallet } = connect();
+const { state, clear, connectWallet, disconnectWallet } = connect();
 const connectUserWallet = async () => {
-  await connectWalletConnect();
+  await connectWallet();
 };
 
 const disconnectUser = async () => {
@@ -12,8 +12,28 @@ const disconnectUser = async () => {
 </script>
 
 <template>
-  <div class="hello">
+  <div v-if="!state.walletType">
+    <h1>Select wallet integration</h1>
+    <div>
+      <button
+        @click="state.walletType = 'walletConnect'"
+        class="disconnect__button"
+      >
+        WalletConnect
+      </button>
+      <div></div>
+      <button
+        @click="state.walletType = 'browserMetaMask'"
+        class="disconnect__button"
+      >
+        Meta Mask
+      </button>
+    </div>
+  </div>
+  <div v-else>
+    <button @click="clear">switch</button>
     <h1>Welcome to Your Vue.js Dapp</h1>
+
     <div v-if="state.status">
       <button @click="connectUserWallet" class="button">Connected</button>
       <h3>Address: {{ state.address }}</h3>

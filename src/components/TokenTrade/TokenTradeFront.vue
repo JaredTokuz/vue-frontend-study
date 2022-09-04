@@ -74,13 +74,11 @@ import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/vue/solid";
 import { computed, ref } from "vue";
 import { QueryLatestTokenState } from "@/composables/latest-token-query";
 
+const props = defineProps<{
+  price: string;
+}>();
+
 const emit = defineEmits<{
   (e: "transact", id: "buy" | "sell"): void;
 }>();
-
-const { latestTokenState } = QueryLatestTokenState();
-
-const price = computed<any>(() => {
-  return latestTokenState.value?.price || "🤡";
-});
 </script>

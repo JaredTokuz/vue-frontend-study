@@ -1,9 +1,12 @@
+/**
+ * @deprecated only using this to look up old code
+ */
 import { metaMaskProvider } from "@/services/ethers";
 import { useWalletStore } from "@/stores/wallet";
 import { onMounted, ref } from "vue";
+import { web3Provider } from "./provider";
 
 /** ? make this ethers client wallet? */
-
 export function WalletConnection() {
   onMounted(async () => {
     await checkNetwork();
@@ -16,8 +19,8 @@ export function WalletConnection() {
 
   // checks if current chain matches with the one provided in env variable
   const checkNetwork = async () => {
-    const provider = metaMaskProvider();
-    const currentChainId = await provider.send("eth_chainId", []);
+    // const provider = metaMaskProvider();
+    const currentChainId = await web3Provider.send("eth_chainId", []);
     if (currentChainId == targetNetworkId) network_ok.value = true;
   };
   // switches network to the one provided in env variable SERVICE
@@ -43,6 +46,22 @@ export function WalletConnection() {
       console.error(error);
     }
   };
+
+  // if (window.ethereum) {
+  //   //@ts-expect-error any
+  //   window.ethereum.on("accountsChanged", (accounts) => {
+  //     console.log("New account detected: ", accounts);
+  //     window.location.reload();
+  //   });
+  //   //@ts-expect-error any
+  //   window.ethereum.on("chainChanged", (chainId) => {
+  //     // Handle the new chain.
+  //     // Correctly handling chain changes can be complicated.
+  //     // We recommend reloading the page unless you have good reason not to.
+  //     console.log("New chain detected: ", chainId);
+  //     window.location.reload();
+  //   });
+  // }
 
   return {
     connectWallet,

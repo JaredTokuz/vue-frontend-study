@@ -1,0 +1,23 @@
+{
+  "connected": true,
+  "accounts": ["0x5231555186e4502bdB603c9E42Ae47f93C54d99D"],
+  "chainId": 1,
+  "bridge": "https://9.bridge.walletconnect.org",
+  "key": "d632d3a66240c7a38f33cd3311ecce985c0231e6184cc57b3ac2ab44c85b8593",
+  "clientId": "c326e60a-0509-4c3e-ab28-efd9b2ef23ca",
+  "clientMeta": {
+    "description": "",
+    "url": "http://localhost:5173",
+    "icons": ["http://localhost:5173/favicon.ico"],
+    "name": "Dapp - Jared Tokuz"
+  },
+  "peerId": "58bbeab1-6f26-41eb-a154-c662731d790b",
+  "peerMeta": {
+    "description": null,
+    "icons": [""],
+    "name": "Trust Wallet Android",
+    "url": "https://trustwallet.com"
+  },
+  "handshakeId": 1662226968009487,
+  "handshakeTopic": "6c3a0b06-b79a-4bb0-bc22-63a75c564d1e"
+}

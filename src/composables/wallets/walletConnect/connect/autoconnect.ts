@@ -1,7 +1,9 @@
 import connect from "./index";
+import walletState from "../../index";
 
-const autoConnect = () => {
-  const { state, connectWalletConnect } = connect();
+const autoConnect = async () => {
+  const { connectWalletConnect } = connect();
+  const { state } = walletState();
   if (state.status) {
     if (localStorage.getItem("walletconnect") == null) {
       console.log("disconnected");

@@ -1,11 +1,14 @@
 import { providers } from "ethers";
 import connect from "./index";
-import { provider } from "../walletConnect/provider";
+import walletState from "../../index";
+
+import { provider } from "../provider";
 
 const connectWalletConnect = async () => {
   try {
-    const { state } = connect();
+    const { state } = walletState();
     //  Enable session (triggers QR Code modal)
+    // provider is enabled and walletconnect is saved to localstorage
     await provider.enable();
     const web3Provider = new providers.Web3Provider(provider);
     const signer = await web3Provider.getSigner();

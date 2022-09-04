@@ -1,6 +1,7 @@
-import { ethers } from "ethers";
-import simpleBondingCurve from "@/types/SimpleBondingCurve.json";
-// import { SimpleBondingCurve } from "@/types/SimpleBondingCurve";
+import { ethers, providers } from "ethers";
+import simpleBondingCurve from "@/contracts/SimpleBondingCurve.sol/SimpleBondingCurve.json";
+// import { SimpleBondingCurve } from "@/typechain/SimpleBondingCurve";
+import { SimpleBondingCurve__factory } from "@/typechain/factories/SimpleBondingCurve__factory";
 
 /*
  * A Web3 Provider wraps a standard Web3 provider, which is
@@ -8,7 +9,7 @@ import simpleBondingCurve from "@/types/SimpleBondingCurve.json";
  * */
 export const metaMaskProvider = () => {
   if (!window.ethereum) throw "ethereum is not loaded";
-  return new ethers.providers.Web3Provider(window.ethereum);
+  return new providers.Web3Provider(window.ethereum);
 };
 
 /**
@@ -69,13 +70,25 @@ export const jsonRPCProvider = () => {
 };
 
 // The Contract object
-// export const getBondingCurveContract = (
-//   provider: ethers.providers.Provider | ethers.Signer
-// ) => {
-//   const contract = new SimpleBondingCurve(
-//     import.meta.env.VITE_BONDINGCURVE_CONTRACT_ADDRESS, // ens acceptable as well
-//     simpleBondingCurve,
-//     provider
-//   );
-//   return contract;
-// };
+export const getBondingCurveContract = (
+  provider: ethers.providers.Provider | ethers.Signer
+) => {
+  const contractAddress = import.meta.env.VITE_BONDINGCURVE_CONTRACT_ADDRESS; // ens acceptable as well
+  const contract = SimpleBondingCurve__factory.connect(
+    contractAddress, // ens acceptable as well
+    provider
+  );
+  return contract;
+};
+
+export const getBondingCurveContractInstance = (
+  provider: ethers.providers.Provider | ethers.Signer
+) => {
+  const contractAddress = import.meta.env.VITE_BONDINGCURVE_CONTRACT_ADDRESS; // ens acceptable as well
+  const contract = new ethers.Contract(
+    contractAddress,
+    simpleBondingCurve.abi,
+    provider
+  );
+  return contract;
+};
