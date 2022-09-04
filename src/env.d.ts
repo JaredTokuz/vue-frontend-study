@@ -4,6 +4,7 @@ interface ImportMetaEnv {
   readonly VITE_BLOCKCHAIN_NETWORK_NAME: string;
   readonly VITE_BLOCKCHAIN_NETWORK_ID: string;
   readonly VUE_APP_INFURA_ID: string;
+  readonly VITE_BONDINGCURVE_SUBGRAPH: string;
 }
 
 interface ImportMeta {

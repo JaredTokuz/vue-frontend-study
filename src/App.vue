@@ -7,7 +7,7 @@ import { onMounted } from "vue";
 import connect from "@/composables/wallets";
 
 const client = createClient({
-  url: "http://0.0.0.0:8000/subgraphs/name/jaredtokuz/bondingcurve",
+  url: import.meta.env.VITE_BONDINGCURVE_SUBGRAPH,
 });
 provideClient(client);
 
