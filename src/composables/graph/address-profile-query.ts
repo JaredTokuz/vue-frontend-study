@@ -1,8 +1,8 @@
 import type { AddressProfile } from "@/components/TokenTrade/schemas.interface";
 import { useQuery } from "@urql/vue";
-import { computed, watchEffect } from "vue";
+import { computed } from "vue";
 
-export const addressProfileQuery = `
+const addressProfileQuery = `
     query {
         addressProfiles {
             id

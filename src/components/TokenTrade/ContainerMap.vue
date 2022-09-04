@@ -3,15 +3,9 @@ import { computed, ref } from "vue";
 import TransitionWrap from "@/components/globals/TransitionWrap.vue";
 import TokenTradeFront from "./TokenTradeFront.vue";
 import { XIcon } from "@heroicons/vue/outline";
-import { WalletConnection } from "@/composables/wallets/metaMask/metamask";
-import {
-  getBondingCurveContract,
-  getBondingCurveContractInstance,
-} from "@/services/ethers";
-import StatusContainer from "../StatusContainer.vue";
+import { getBondingCurveContract } from "@/services/ethers";
 import connect from "@/composables/wallets";
-import { QueryLatestTokenState } from "@/composables/latest-token-query";
-import { mainRefresh } from "@/composables/main-refresh";
+import { mainRefresh, QueryLatestTokenState } from "@/composables/graph";
 
 const { state, connectWallet, disconnectWallet, clear, getProvider } =
   connect();
@@ -21,6 +15,7 @@ const connectUserWallet = async () => {
   await connectWallet();
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const disconnectUser = async () => {
   await disconnectWallet();
 };
@@ -55,6 +50,7 @@ const buyTokens = async () => {
     const bc = getBondingCurveContract(signer);
     const maxGasPrice = await bc.gasPrice().then((d) => d.toNumber());
     const b = await bc.buy({ value: insertedWei.value, gasPrice: maxGasPrice });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const r = await b.wait();
     refresh();
     changeSelected("main");

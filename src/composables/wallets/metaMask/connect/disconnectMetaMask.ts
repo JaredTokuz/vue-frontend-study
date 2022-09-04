@@ -1,4 +1,3 @@
-import connect from "./index";
 import walletState from "../../index";
 
 //meta mask can only do a real disconnect in the wallet

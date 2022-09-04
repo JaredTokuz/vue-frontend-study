@@ -1,8 +1,5 @@
-import { providers } from "ethers";
-import connect from "./index";
 import walletState from "../../index";
 
-import { web3Provider } from "../provider";
 import { metaMaskProvider } from "@/services/ethers";
 
 const connectMetaMask = async () => {
@@ -12,7 +9,7 @@ const connectMetaMask = async () => {
     // await provider.enable();
     const web3Provider = metaMaskProvider();
     //  request accounts in order to connect
-    const accounts = await web3Provider.send("eth_requestAccounts", []);
+    await web3Provider.send("eth_requestAccounts", []);
     const signer = await web3Provider.getSigner();
     const address = await signer.getAddress();
     state.status = true;

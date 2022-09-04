@@ -1,5 +1,4 @@
 import { provider } from "../provider";
-import connect from "./index";
 import walletState from "../../index";
 
 const disconnectWallet = async () => {

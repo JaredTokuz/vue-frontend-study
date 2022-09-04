@@ -1,5 +1,4 @@
 import { providers } from "ethers";
-import connect from "./index";
 import walletState from "../../index";
 
 import { provider } from "../provider";

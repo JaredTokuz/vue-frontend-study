@@ -16,6 +16,7 @@
 
 <script setup lang="ts">
 import { TransitionRoot } from "@headlessui/vue";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{
   isShowing: boolean;
 }>();

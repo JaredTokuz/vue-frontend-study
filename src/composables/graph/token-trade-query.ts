@@ -1,6 +1,6 @@
 import type { TokenTrades } from "@/components/TokenTrade/schemas.interface";
 import { useQuery } from "@urql/vue";
-import { computed, watchEffect } from "vue";
+import { computed } from "vue";
 
 export const tokenTradeQuery = `
     query {

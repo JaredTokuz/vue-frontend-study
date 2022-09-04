@@ -1,4 +1,4 @@
-import { computed, reactive, watch } from "vue";
+import { reactive, watch } from "vue";
 import walletConnect from "./walletConnect/connect";
 import metaMask from "./metaMask/connect";
 import type { providers } from "ethers";
