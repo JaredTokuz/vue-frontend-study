@@ -22,6 +22,12 @@ export function QueryLatestTokenState() {
     query: latestTokenStateQuery,
   });
 
+  const refresh = () => {
+    results.executeQuery({
+      requestPolicy: "network-only",
+    });
+  };
+
   /** log every render */
   // watchEffect(() => {
   //   console.log("results", results);
@@ -33,5 +39,5 @@ export function QueryLatestTokenState() {
   const latestTokenState = computed<LatestTokenState | undefined>(() => {
     return results.data.value?.latestTokenState;
   });
-  return { latestTokenState };
+  return { latestTokenState, refresh };
 }

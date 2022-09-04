@@ -31,6 +31,12 @@ export function QueryAddressProfiles() {
   //   console.log("fetching", results.fetching.value);
   // });
 
+  const refresh = () => {
+    results.executeQuery({
+      requestPolicy: "network-only",
+    });
+  };
+
   const addressProfiles = computed<AddressProfile[]>(() => {
     const addressEvents = results.data.value?.addressProfiles || [];
     const formatted: AddressProfile[] = addressEvents.map((x: any) => {
@@ -47,5 +53,5 @@ export function QueryAddressProfiles() {
     return formatted;
   });
 
-  return { addressProfiles };
+  return { addressProfiles, refresh };
 }

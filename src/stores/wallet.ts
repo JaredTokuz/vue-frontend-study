@@ -8,7 +8,9 @@ export interface WalletData {
   address: string;
   acc_short: string;
 }
-
+/**
+ * @deprecated only using this to look up old code
+ */
 export const useWalletStore = defineStore("wallet", () => {
   const address = ref("");
   const connected = ref(false);

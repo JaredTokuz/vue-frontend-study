@@ -71,8 +71,6 @@
 
 <script setup lang="ts">
 import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/vue/solid";
-import { computed, ref } from "vue";
-import { QueryLatestTokenState } from "@/composables/latest-token-query";
 
 const props = defineProps<{
   price: string;

@@ -11,6 +11,7 @@ import {
 import StatusContainer from "../StatusContainer.vue";
 import connect from "@/composables/wallets";
 import { QueryLatestTokenState } from "@/composables/latest-token-query";
+import { mainRefresh } from "@/composables/main-refresh";
 
 const { state, connectWallet, disconnectWallet, clear, getProvider } =
   connect();
@@ -45,24 +46,17 @@ const price = computed<any>(() => {
   return latestTokenState.value?.price || "🤡";
 });
 
+const { refresh } = mainRefresh();
+
 const buyTokens = async () => {
   const provider = await getProvider();
   if (provider) {
     const signer = provider.getSigner();
-    const chainid = await signer.getChainId();
-    console.log("chainid" + chainid);
     const bc = getBondingCurveContract(signer);
-    console.log("bc" + bc);
-    console.log("bc" + state.address);
-    const bal = await bc.balanceOf(state.address);
-    console.log("bal", bal.toNumber());
     const maxGasPrice = await bc.gasPrice().then((d) => d.toNumber());
-    console.log("maxGasPrice", maxGasPrice);
-    console.log("insertedWei.value", insertedWei.value);
     const b = await bc.buy({ value: insertedWei.value, gasPrice: maxGasPrice });
-    console.log("b", b);
     const r = await b.wait();
-    console.log("r", r);
+    refresh();
     changeSelected("main");
   }
   insertedWei.value = 0;
@@ -71,15 +65,6 @@ const buyTokens = async () => {
 const sellTokens = () => {
   insertedErc20.value = 0;
   changeSelected("main");
-};
-
-// const { connectWallet, walletStore, network_ok, targetNetwork } =
-//   WalletConnection();
-
-const adjustPrice = (event: Event) => {
-  return (event.target as any).value > price.value
-    ? (event.target as any).value
-    : price.value;
 };
 </script>
 

@@ -29,6 +29,12 @@ export function QueryTokenTrades() {
   //   console.log("fetching", results.fetching.value);
   // });
 
+  const refresh = () => {
+    results.executeQuery({
+      requestPolicy: "network-only",
+    });
+  };
+
   const tokenTrades = computed<TokenTrades[]>(() => {
     const tradeEvents = results.data.value?.tokenTrades || [];
     const formatted: TokenTrades[] = tradeEvents.map((x: any) => {
@@ -42,5 +48,5 @@ export function QueryTokenTrades() {
     });
     return formatted;
   });
-  return { tokenTrades };
+  return { tokenTrades, refresh };
 }
